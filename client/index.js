@@ -2,6 +2,7 @@ const addTaskForm = document.querySelector('#addTaskForm')
 const addTaskTitle = document.querySelector('#addTaskForm #title')
 const addTaskBtn = document.querySelector('#addTaskBtn')
 const addTaskMsg = document.querySelector('#addTaskMsg')
+const addTaskDescription = document.querySelector('#addTaskForm #description')
 
 const addTask = async () => {
   const data = new FormData(addTaskForm)
