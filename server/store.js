@@ -11,7 +11,7 @@ function Filter() {
 const storage = require('azure-storage')
 const retry = new storage.LinearRetryPolicyFilter();
 const logging = new Filter();
-const service = storage.createTableService().withFilter(logging).withFilter(retry);
+const service = storage.createTableService()
 const table = 'tasks'
 const uuid = require('uuid')
 
@@ -35,10 +35,10 @@ const addTask = async ({ title, description }) => (
       }
       console.log('addtask - task')
       service.insertEntity(table, task, (error) => {
-        !error ? resolve() : reject()
         if(error) {
           console.log(error);
         }
+        !error ? resolve() : reject()
       })
       console.log('addtask - insertEntity')
     })
