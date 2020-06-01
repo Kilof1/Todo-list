@@ -3,6 +3,7 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const favicon = require('koa-favicon')
 const serve = require('koa-static')
+require('./store').init()
 const app = new Koa()
 const port = process.env.PORT || 3000
 
