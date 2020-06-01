@@ -21,5 +21,5 @@ jobs:
       if: github.ref == 'refs/heads/staging'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: ${{ secrets.AZURE_STAGING }}
+        app-name: ${{ secrets.STAGING }}
         publish-profile: ${{ secrets.STAGING_PUBLISH_PROFILE }}
