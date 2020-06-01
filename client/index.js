@@ -38,8 +38,13 @@ const listTasks = async () => {
         const title = document.createElement('td')
         title.innerHTML = `<p>${task.title}</p>`
 
+        const description = document.createElement('td')
+        description.innerHTML = `<p>${task.description == '' ? 'Brak opisu': task.description}</p>`
+
+
         const row = document.createElement('tr')
         row.appendChild(title)
+        row.appendChild(description)
 
         tasksList.appendChild(row)
       })
@@ -50,8 +55,8 @@ const listTasks = async () => {
       tasksListMsg.classList.remove('is-hidden')
     })
 }
-addTaskForm.addEventListener('submit', (event) => {
-  event.preventDefault()
+addTaskForm.addEventListener('submit', (e) => {
+  e.preventDefault()
 
   addTaskBtn.classList.add('is-loading', 'is-disabled')
   addTaskMsg.classList.remove('is-danger', 'is-success')
