@@ -41,10 +41,13 @@ const listTasks = async () => {
         const description = document.createElement('td')
         description.innerHTML = `<p>${task.description == '' ? 'Brak opisu': task.description}</p>`
 
+        const timestamp = document.createElement('td')
+        timestamp.innerHTML = `<p>${moment(task.Timestamp).format('DD-MM-YYYY')}</p>`
 
         const row = document.createElement('tr')
         row.appendChild(title)
         row.appendChild(description)
+        row.appendChild(timestamp)
 
         tasksList.appendChild(row)
       })
