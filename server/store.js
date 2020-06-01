@@ -13,6 +13,7 @@ const retry = new storage.LinearRetryPolicyFilter();
 const logging = new Filter();
 const service = storage.createTableService().withFilter(logging).withFilter(retry);
 const table = 'tasks'
+const uuid = require('uuid')
 
 const init = async () => (
   new Promise((resolve, reject) => {
@@ -22,6 +23,28 @@ const init = async () => (
   })
 )
 
+const addTask = async ({ title }) => (
+    new Promise((resolve, reject) => {
+      const gen = storage.TableUtilities.entityGenerator
+      console.log('addtask - gen')
+      const task = {
+        PartitionKey: gen.String('task'),
+        RowKey: gen.String(uuid.v4()),
+        title
+      }
+      console.log('addtask - task')
+      service.insertEntity(table, task, (error) => {
+        !error ? resolve() : reject()
+        if(error) {
+          console.log(error);
+        }
+      })
+      console.log('addtask - insertEntity')
+    })
+    ,console.log('addtask - Promise')
+  )
+
 module.exports = {
-  init
+  init,
+  addTask
 }
