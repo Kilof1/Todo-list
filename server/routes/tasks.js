@@ -11,6 +11,15 @@ router.post('/', async (ctx) => {
   await store.addTask(ctx.request.body)
   console.log('addtask - post')
   ctx.status = 200
+  var task = ctx.request.body
+  if(task.title != ''){
+    await store.addTask(ctx.request.body)
+    console.log('addtask - post')
+    ctx.status = 200
+  }
+  else{
+    ctx.status = 400
+  }
 })
 
 router.delete('/', async (ctx) => {
