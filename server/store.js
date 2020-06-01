@@ -1,6 +1,17 @@
+function Filter() {
+    this.handle = (requestOptions, next) => {
+      console.log(requestOptions);
+      next(requestOptions, (returnObject, finalCallback, next) => {
+        console.log(returnObject);
+      })
+    }
+  }
+  
+
 const storage = require('azure-storage')
 const retry = new storage.LinearRetryPolicyFilter();
-const service = storage.createTableService().withFilter(retry);
+const logging = new Filter();
+const service = storage.createTableService().withFilter(logging).withFilter(retry);
 const table = 'tasks'
 
 const init = async () => (
